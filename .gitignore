@@ -1,0 +1,22 @@
+# Dist
+dist
+
+# Node modules
+node_modules
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Dependency directories
+node_modules
+
+# Misc
+*.pem
+*.key
+*.crt
+
