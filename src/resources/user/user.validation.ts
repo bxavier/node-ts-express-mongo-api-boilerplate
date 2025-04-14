@@ -1,13 +1,11 @@
 import { z } from 'zod';
 
-// Schema for ID parameter validation
 export const idParamSchema = z.object({
   params: z.object({
     id: z.string().regex(/^[0-9a-fA-F]{24}$/, 'Invalid MongoDB ID format'),
   }),
 });
 
-// Schema for creating a user
 export const createUserSchema = z.object({
   body: z.object({
     name: z.string().min(2, 'Name must be at least 2 characters').max(50, 'Name cannot exceed 50 characters'),
@@ -17,7 +15,6 @@ export const createUserSchema = z.object({
   }),
 });
 
-// Schema for updating a user
 export const updateUserSchema = z.object({
   params: z.object({
     id: z.string().regex(/^[0-9a-fA-F]{24}$/, 'Invalid MongoDB ID format'),
@@ -30,7 +27,6 @@ export const updateUserSchema = z.object({
   }),
 });
 
-// Combining schemas for reuse
 export default {
   createUser: createUserSchema,
   updateUser: updateUserSchema,

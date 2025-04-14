@@ -6,13 +6,11 @@ import config from './config';
  * Initialize database connection
  */
 export const connectDatabase = (): void => {
-  // Validate required database configuration
   if (!config.MONGO_PATH || !config.MONGO_DATABASE) {
     logger.error('Missing required database configuration');
     process.exit(1);
   }
 
-  // Get MongoDB connection URI from config
   const mongoURI = config.getMongoURI();
 
   const connectWithRetry = (retries = 5, delay = 5000) => {
@@ -50,7 +48,6 @@ export const connectDatabase = (): void => {
     logger.warn('Database disconnected');
   });
 
-  // Handle application termination
   process.on('SIGINT', () => {
     mongoose.connection.close().then(() => {
       logger.info('Database connection closed due to app termination');

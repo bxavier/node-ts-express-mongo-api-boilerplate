@@ -12,7 +12,6 @@ class Config {
   public MONGO_DATABASE: string;
 
   constructor() {
-    // Validate and clean environment variables
     const env = cleanEnv(process.env, {
       NODE_ENV: str({ choices: ['development', 'production'], default: 'development' }),
       PORT: port({ default: 3000 }),
@@ -22,7 +21,6 @@ class Config {
       MONGO_DATABASE: str(),
     });
 
-    // Assign validated env variables to class properties
     this.NODE_ENV = env.NODE_ENV;
     this.PORT = env.PORT;
     this.MONGO_PATH = env.MONGO_PATH;
@@ -46,5 +44,4 @@ class Config {
   }
 }
 
-// Export a singleton instance to be used throughout the app
 export default new Config();

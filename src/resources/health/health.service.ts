@@ -67,7 +67,6 @@ class HealthService {
       status: currentDbState.label,
     };
 
-    // If connected, measure response time with a simple ping
     if (currentDbState.value === 1 && mongoose.connection.db) {
       try {
         const start = Date.now();
@@ -75,7 +74,7 @@ class HealthService {
         const end = Date.now();
         dbInfo.responseTime = end - start;
       } catch (error) {
-        // Ignore errors when checking response time
+        console.error('Database connection failed:', error);
       }
     }
 
